@@ -4,25 +4,48 @@ import Car from './Cars';
 //On crée la classe Mycars
 class Mycars extends Component {
 
-    //Fonction qui va se lancer quand quelqu'un va copier le texte
-    noCopy = () => {
-        alert('merci de ne pas copier le texte');
+
+    state = {
+        voitures: [
+            { name: 'Ford', color: 'red', year: 2000 },
+            { name: 'Mercedes', color: 'black', year: 1980 },
+            { name: 'Peugeot', color: 'blue', year: 2010 }
+        ],
+        titre: 'Mon catalogue de voitures 2'
     };
 
-    // //On va ajouter un style lors du survol du titre h1
-    // addStyle = (e) => {
-    //     e.target.classList.toggle('styled');        //toggle si la classe existe la supprime, sinon la rajoute
-    // };
+    addTenYears = () => {
+
+        const updatedState = this.state.voitures.map((param)=> {
+            return  param.year -= 10;
+        });
+
+        this.setState({
+            updatedState
+        });
+    }
 
     render() {
+
+        const year = new Date().getFullYear();
+
         return (
             <div>
-                <h1>{this.props.title}</h1>
-                <p onCopy={this.noCopy}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <Car color="red"> Ford </Car>
-                <Car > Mercedes </Car>
-                <Car color="blue"></Car>
-            </div>)
+                <h1>{this.state.titre}</h1>
+
+                <button onClick={this.addTenYears}>+10ans</button>
+                {
+                    this.state.voitures.map((voiture, index) => {
+                        return (
+                            <div key={index}> 
+                            <Car color={voiture.color}  year={ year - voiture.year + ' ans'} name={voiture.name}/>
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+        );
     }
 }
 
