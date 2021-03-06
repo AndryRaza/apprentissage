@@ -1,4 +1,4 @@
-import React, { Component } from 'react';   //On importe react de react
+import React, { Component, Fragment } from 'react';   //On importe react de react
 import Car from './Cars';
 
 //On crée la classe Mycars
@@ -30,21 +30,20 @@ class Mycars extends Component {
         const year = new Date().getFullYear();
 
         return (
-            <div>
+            <>
                 <h1>{this.state.titre}</h1>
 
                 <button onClick={this.addTenYears}>+10ans</button>
                 {
                     this.state.voitures.map((voiture, index) => {
                         return (
-                            <div key={index}> 
+                            <Fragment key={index}> 
                             <Car color={voiture.color}  year={ year - voiture.year + ' ans'} name={voiture.name}/>
-                            </div>
+                            </Fragment>
                         )
                     })
                 }
-
-            </div>
+            </>
         );
     }
 }
