@@ -1,0 +1,8 @@
+Questions : 
+
+type : STRING
+question : STRING
+propositions : [('A',''),('B',''),('C','')('D','')]
+image : STRING
+
+

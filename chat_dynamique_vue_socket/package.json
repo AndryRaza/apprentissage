@@ -1,9 +1,0 @@
-{
-    "name": "kuizz",
-    "version": "0.0.1",
-    "description": "Une application de chat en vuejs et socketio",
-    "dependencies": {
-        "express": "^4.17.1",
-        "socket.io": "^4.0.0"
-    }
-}
