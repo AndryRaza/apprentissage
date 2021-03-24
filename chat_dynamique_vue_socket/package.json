@@ -1,5 +1,5 @@
 {
-    "name": "chat-tnt",
+    "name": "kuizz",
     "version": "0.0.1",
     "description": "Une application de chat en vuejs et socketio",
     "dependencies": {
