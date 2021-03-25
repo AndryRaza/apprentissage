@@ -15,9 +15,10 @@
           >
             {{ prop }}
           </p>
-          <p v-else 
-          v-on:click="func_reponse(id)"
-          class="bg-purple-600 bg-opacity-25 proposition"
+          <p
+            v-else
+            v-on:click="func_reponse(id)"
+            class="bg-purple-600 bg-opacity-25 proposition"
           >
             {{ prop }}
           </p>
@@ -77,7 +78,8 @@ export default {
       questions: questions,
       number: 0,
       temps: 10,
-      reponse: null
+      reponses_utilisateur: [],
+      reponses: [],
     };
   },
   methods: {
@@ -86,20 +88,30 @@ export default {
         if (this.temps > 0) {
           this.temps--;
         } else {
-          this.number =  Math.floor(Math.random() * Math.floor(this.questions.length));
+          this.number = Math.floor(
+            Math.random() * Math.floor(this.questions.length)
+          );
+          if (this.reponses_utilisateur.length != this.reponses.length) {
+            this.reponses_utilisateur.push('null');
+          }
           this.temps = 10;
         }
       }, 1000);
     },
-    func_reponse(rep){
-      this.reponse = rep;
-    }
+    func_reponse(rep) {
+      if (this.reponses_utilisateur.length === this.reponses.length) {
+        this.reponses_utilisateur[this.reponses_utilisateur.length - 1] = rep;
+      } else {
+        this.reponses_utilisateur.push(rep);
+      }
+    },
   },
   computed: {
     question() {
       let tab = this.questions.filter((item) => {
         return item.id === this.number;
       });
+      this.reponses.push(tab[0].reponse);
       return tab;
     },
   },

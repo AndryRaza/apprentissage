@@ -21,3 +21,17 @@ Modele propositions
         <span class="text-xl font-black">A</span> - Marocain
       </p>
 </div>
+
+
+Réponses : 
+
+Deux tableaux : reponse_utilisateur qui contient les réponses de l'utilisateur, reponse qui contient les réponses des questions posées
+
+Si (longueur(reponse_utilisateur) === reponse.length) alors l'utilisateur a déjà cliqué sur une proposition, on remplace alors 
+la dernière réponse donnée par la nouvelle proposition qu'il a cliqué
+sinon tout va bien on push dans le tableau
+
+=> Si (longueur(reponse_utilisateur) === reponse.length) alors reponse_utilisateur[reponse_utilisateur.length-1] = reponse cliquée
+sinon reponse_utilisateur.push(reponse cliquée)
+
+Si l'utilisateur ne met pas de reponse il faut mettre une valeur à null
