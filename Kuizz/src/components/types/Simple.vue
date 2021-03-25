@@ -86,14 +86,10 @@ export default {
         if (this.temps > 0) {
           this.temps--;
         } else {
+          this.number =  Math.floor(Math.random() * Math.floor(this.questions.length));
           this.temps = 10;
         }
       }, 1000);
-    },
-    quest_alea(){
-      setInterval(() => {
-        this.number =  Math.floor(Math.random() * Math.floor(this.questions.length));
-      }, 10000);
     },
     func_reponse(rep){
       this.reponse = rep;
@@ -109,7 +105,6 @@ export default {
   },
   created: function () {
     this.timer();
-    this.quest_alea();
   },
 };
 </script>
