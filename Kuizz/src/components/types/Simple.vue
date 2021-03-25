@@ -20,7 +20,7 @@
         </span>
       </div>
     </div>
-    <p class="mt-5">Temps restant : {{ temps }} secondes </p>
+    <p class="mt-5">Temps restant : {{ temps }} secondes</p>
   </div>
 </template>
 
@@ -75,21 +75,20 @@ export default {
       temps: 10,
     };
   },
-  method: {
-      timer(){
-          const self = this;
-          setInterval(()=>{
-              if (self.temps != 0)
-              {
-                  self.temps = 10;
-              }
-              else 
-              {
-                  self.temps = self.temps - 1;
-              }
-          },1000);
-          console.log('ok')
-      }
+  methods: {
+    timer() {
+        const self = this;
+        setInterval(()=>{
+          if (self.temps > 0) 
+          {
+            self.temps--;
+          }
+          else
+          {
+            self.temps = 10;
+          }
+        },1000)
+    }
   },
   computed: {
     question() {
@@ -97,7 +96,7 @@ export default {
       const len = this.questions.length;
 
       setInterval(() => {
-        tab = []
+        tab = [];
         self.number = Math.floor(Math.random() * Math.floor(3));
       }, 10000);
 
@@ -108,8 +107,8 @@ export default {
       return tab;
     },
   },
-  mounted: () => {
-      this.timer;
+  created: function() {
+    this.timer();
   }
 };
 </script>
