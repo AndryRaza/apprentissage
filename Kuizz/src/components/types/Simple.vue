@@ -10,11 +10,15 @@
         <span v-for="(prop, id) in q.propositions" v-bind:key="id">
           <p
             v-if="id === 0 || id === 3"
+            v-on:click="func_reponse(id)"
             class="bg-purple-600 bg-opacity-50 proposition"
           >
             {{ prop }}
           </p>
-          <p v-else class="bg-purple-600 bg-opacity-25 proposition">
+          <p v-else 
+          v-on:click="func_reponse(id)"
+          class="bg-purple-600 bg-opacity-25 proposition"
+          >
             {{ prop }}
           </p>
         </span>
@@ -73,6 +77,7 @@ export default {
       questions: questions,
       number: 0,
       temps: 10,
+      reponse: null
     };
   },
   methods: {
@@ -84,25 +89,27 @@ export default {
           this.temps = 10;
         }
       }, 1000);
+    },
+    quest_alea(){
+      setInterval(() => {
+        this.number =  Math.floor(Math.random() * Math.floor(this.questions.length));
+      }, 10000);
+    },
+    func_reponse(rep){
+      this.reponse = rep;
     }
   },
   computed: {
     question() {
-      const self = this;
-      const len = this.questions.length;
-      setInterval(() => {
-        tab = [];
-        self.number = Math.floor(Math.random() * Math.floor(len));
-      }, 10000);
-      let id = this.number;
       let tab = this.questions.filter((item) => {
-        return item.id === id;
+        return item.id === this.number;
       });
       return tab;
     },
   },
   created: function () {
     this.timer();
+    this.quest_alea();
   },
 };
 </script>
