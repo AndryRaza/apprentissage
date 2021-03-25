@@ -57,7 +57,6 @@ const Home = {
                 setTimeout(() => {
                     $cookies.set('like', JSON.stringify(this.liked)); //fonction donné par plug in vue cookie
                 }, 300);
-
             });
         },
         addToCart(product) {

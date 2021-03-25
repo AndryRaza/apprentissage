@@ -5,4 +5,19 @@ question : STRING
 propositions : [('A',''),('B',''),('C','')('D','')]
 image : STRING
 
+Modele propositions 
 
+<div class="grid grid-cols-2 text-center gap-x-4 gap-y-32 mt-14">
+      <p class="bg-purple-600 bg-opacity-50 proposition">
+        <span class="text-xl font-black">A</span> - Marocain
+      </p>
+      <p class="bg-purple-600 bg-opacity-50 proposition">
+        <span class="text-xl font-black">A</span> - Marocain
+      </p>
+      <p class="bg-purple-600 bg-opacity-50 proposition">
+        <span class="text-xl font-black">A</span> - Marocain
+      </p>
+      <p class="bg-purple-600 bg-opacity-50 proposition">
+        <span class="text-xl font-black">A</span> - Marocain
+      </p>
+</div>
