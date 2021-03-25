@@ -77,29 +77,23 @@ export default {
   },
   methods: {
     timer() {
-        const self = this;
-        setInterval(()=>{
-          if (self.temps > 0) 
-          {
-            self.temps--;
-          }
-          else
-          {
-            self.temps = 10;
-          }
-        },1000)
+      setInterval(() => {
+        if (this.temps > 0) {
+          this.temps--;
+        } else {
+          this.temps = 10;
+        }
+      }, 1000);
     }
   },
   computed: {
     question() {
       const self = this;
       const len = this.questions.length;
-
       setInterval(() => {
         tab = [];
-        self.number = Math.floor(Math.random() * Math.floor(3));
+        self.number = Math.floor(Math.random() * Math.floor(len));
       }, 10000);
-
       let id = this.number;
       let tab = this.questions.filter((item) => {
         return item.id === id;
@@ -107,9 +101,9 @@ export default {
       return tab;
     },
   },
-  created: function() {
+  created: function () {
     this.timer();
-  }
+  },
 };
 </script>
 
