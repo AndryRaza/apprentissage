@@ -1,0 +1,7 @@
+mise en relation patient infirmier
+
+carte infirmier le plus près 
+
+techno utilisée : ReactNative - CRM - Node - ApiREST PhP mysql - TimeScript - GraphikUrl Appolo - 
+
+ 

@@ -1,32 +1,43 @@
 <template>
-  <div class="flex flex-col mt-20 border-4 border-grey h-100 p-8">
-    <div v-for="(q, id) in question" v-bind:key="id">
-      <p class="text-center text-2xl">
-        {{ q.question }}
-        <br />
-        <img class="mx-auto" v-bind:src="img" />
-      </p>
-      <div class="grid md:grid-cols-2 text-center gap-x-4 gap-y-32 mt-14">
-        <span v-for="(prop, id) in q.propositions" v-bind:key="id">
-          <p
-            v-if="id === 0 || id === 3"
-            v-on:click="func_reponse(id)"
-            class="bg-purple-600 bg-opacity-50 proposition"
-          >
-            {{ prop }}
-          </p>
-          <p
-            v-else
-            v-on:click="func_reponse(id)"
-            class="bg-purple-600 bg-opacity-25 proposition"
-          >
-            {{ prop }}
-          </p>
-        </span>
+  <section>
+    <div
+      v-if="nbre_fin > nbre_questions"
+      class="flex flex-col mt-20 border-4 border-grey h-100 p-8"
+    >
+      <div v-for="(q, id) in question" v-bind:key="id">
+        <p class="text-center text-2xl">
+          {{ q.question }}
+          <br />
+          <img class="mx-auto" v-bind:src="img" />
+        </p>
+        <div class="grid md:grid-cols-2 text-center gap-x-4 gap-y-32 mt-14">
+          <span v-for="(prop, id) in q.propositions" v-bind:key="id">
+            <p
+              v-if="id === 0 || id === 3"
+              v-on:click="func_reponse(id)"
+              class="bg-purple-600 bg-opacity-50 proposition"
+            >
+              {{ prop }}
+            </p>
+            <p
+              v-else
+              v-on:click="func_reponse(id)"
+              class="bg-purple-600 bg-opacity-25 proposition"
+            >
+              {{ prop }}
+            </p>
+          </span>
+        </div>
       </div>
+      <p class="mt-5">Temps restant : {{ temps }} secondes</p>
     </div>
-    <p class="mt-5">Temps restant : {{ temps }} secondes</p>
-  </div>
+
+    <div v-else>
+      <Fin v-bind:reponses_utilisateur = "reponses_utilisateur" v-bind:reponses = "reponses" />
+    </div>
+
+
+  </section>
 </template>
 
 <script>
@@ -70,6 +81,8 @@ const questions = [
 
 import img from "../../assets/logo.png";
 
+import Fin from "./Fin";
+
 export default {
   name: "Simple",
   data() {
@@ -80,7 +93,12 @@ export default {
       temps: 10,
       reponses_utilisateur: [],
       reponses: [],
+      nbre_questions: 0,
+      nbre_fin: 3,
     };
+  },
+  components:{
+    Fin
   },
   methods: {
     timer() {
@@ -92,8 +110,9 @@ export default {
             Math.random() * Math.floor(this.questions.length)
           );
           if (this.reponses_utilisateur.length != this.reponses.length) {
-            this.reponses_utilisateur.push('null');
+            this.reponses_utilisateur.push("rien");
           }
+          this.nbre_questions++;
           this.temps = 10;
         }
       }, 1000);
